@@ -4,16 +4,6 @@ const authController = require('../controllers/auth.controller');
 const autenticar = require('../middlewares/auth.middleware');
 const { configurarPassport } = require('../config/passport');
 
-app.use(cors({
-  origin: [
-    "http://localhost:8081",
-    "http://localhost:19006",
-    "https://SEU-APP.expo.app"
-  ],
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
 
 const router = express.Router();
 
