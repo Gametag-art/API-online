@@ -1,6 +1,8 @@
+
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 const { configurarPassport } = require('./config/passport');
@@ -10,6 +12,15 @@ const usuarioRoutes = require('./routes/usuario.routes');
 const bolsaRoutes = require('./routes/bolsa.routes');
 
 const app = express();
+
+app.use(cors({
+  origin: [
+    'http://localhost:8081',
+    'http://127.0.0.1:8081'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(express.json()); // Permite receber dados no formato JSON
 

@@ -1,5 +1,5 @@
 require('dotenv').config(); // Carrega as variáveis de ambiente
-
+const cors = require("cors");
 const app = require('./app');
 const { sequelize, Usuario } = require('./models');
 const PORT = process.env.PORT || 4567; // Define a porta do servidor
