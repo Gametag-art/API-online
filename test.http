@@ -1,0 +1,34 @@
+GET http://localhost:4567/cotas/
+
+###
+GET http://localhost:4567/bolsas/
+
+###
+GET http://localhost:4567/usuarios/
+
+###
+POST http://localhost:4567/usuarios
+Content-Type: application/json
+
+{
+    "nome": "Mateus",
+    "email": "Myemail@gmail.com"
+}
+
+###
+POST http://localhost:4567/bolsas
+Content-Type: application/json
+
+{
+    "nome": "PETRAva",
+    "valor": 120
+}
+
+###
+POST http://localhost:4567/bolsas/1/cotas
+Content-Type: application/json
+
+{
+    "quantidade": 10,
+    "usuarioId": "1"
+}

@@ -1,0 +1,63 @@
+# Testes JWT e OAuth - API DAM
+# Execute com a API ligada: npm start
+
+@baseUrl = http://localhost:4567
+@senha = RestClient@2026
+
+
+### 1. Verificar API
+GET {{baseUrl}}/
+
+### 2. Cadastrar usuario
+# @name cadastro
+POST {{baseUrl}}/auth/cadastro
+Content-Type: application/json
+
+{
+  "nome": "Usuario Teste",
+  "email": "teste@example.com",
+  "senha": "{1234}"
+}
+
+### 3. Fazer login e obter JWT
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "teste@example.com",
+  "senha": "{1234}"
+}
+
+### 4. Consultar perfil com JWT
+GET {{baseUrl}}/auth/perfil
+Authorization: Bearer {{login.response.body.$.token}}
+
+### 5. Consultar perfil sem JWT (esperado: 401)
+GET {{baseUrl}}/auth/perfil
+
+### 6. Fazer login com senha incorreta (esperado: 401)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{cadastro.response.body.$.email}}",
+  "senha": "{{}}"
+}
+
+### 7. Listar usuarios (rota antiga, sem JWT)
+GET {{baseUrl}}/usuarios
+
+### 8. Listar bolsas (rota antiga, sem JWT)
+GET {{baseUrl}}/bolsas
+
+### 9. Listar cotas (rota antiga, sem JWT)
+GET {{baseUrl}}/cotas
+
+### 10. Iniciar login OAuth pelo GitHub
+# Conclua a autorizacao no navegador; nao chame o callback manualmente.
+GET {{baseUrl}}/auth/github
+
+###
+GET http://localhost:4567/auth/perfil
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTc5NDA1NjY3NiwiZXhwIjoxNzk0MDYwMjc2fQ.E4llPOB3PqX653PRwg2qte_o0109ywKHXYEUGpjd8p0
