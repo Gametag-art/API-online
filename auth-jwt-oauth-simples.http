@@ -76,5 +76,8 @@ GET {{baseUrl}}/cotas
 GET {{baseUrl}}/auth/github
 
 ###
+GET http://localhost:4567/usuarios/minhas-cotas
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTc5NDg0MjE3MSwiZXhwIjoxNzk0ODQ1NzcxfQ.bNQLYUssAFqSItrmtX1LThNswv5RjnsSwP8S_yx9WyE
+###
 GET http://localhost:4567/auth/perfil
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvSWQiOjEsImlhdCI6MTc5NDA1NjY3NiwiZXhwIjoxNzk0MDYwMjc2fQ.E4llPOB3PqX653PRwg2qte_o0109ywKHXYEUGpjd8p0
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3OTQ4NDE4NzIsImV4cCI6MTc5NDg0NTQ3Mn0.d4frkXPL7xFW3mA19RQNRnT5i0n9Ii2Kz9ncXff2XC0

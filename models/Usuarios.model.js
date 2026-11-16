@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     senha: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    valorInicialCarteira: {
+      type: DataTypes.DECIMAL(12, 2),
+      allowNull: true,
+      defaultValue: null
     }
   }, {
     defaultScope: {

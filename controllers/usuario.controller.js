@@ -1,4 +1,4 @@
-const { Usuario, Cota } = require("../models");
+const { Usuario, Cota ,Bolsa } = require("../models");
 const { ValidationError, UniqueConstraintError } = require("sequelize");
 
 async function listar(req, res) {
@@ -130,9 +130,26 @@ async function listarCotas(req, res) {
       });
     }
 
-    return res.status(200).json(usuario.cotas);
+    const patrimonioAtual = usuario.cotas.reduce((total, cota) => {
+      return total +
+        Number(cota.quantidade) * Number(cota.bolsa?.valor || 0);
+    }, 0);
+
+    const valorInicialCarteira = Number(usuario.valorInicialCarteira) || 0;
+    const rendimentoPercentual = valorInicialCarteira > 0
+      ? ((patrimonioAtual - valorInicialCarteira) / valorInicialCarteira) * 100
+      : 0;
+
+    return res.status(200).json({
+      valorInicialCarteira,
+      patrimonioAtual,
+      rendimentoPercentual,
+      cotas: usuario.cotas,
+    });
 
   } catch (error) {
+    console.error("Erro ao listar cotas:", error);
+
     return res.status(500).json({
       erro: "Não foi possível listar as cotas do usuário",
     });

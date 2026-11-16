@@ -16,6 +16,17 @@ async function iniciar() {
       allowNull: true,
     });
   }
+  if (!colunasUsuarios.valorInicialCarteira) {
+  await sequelize.getQueryInterface().addColumn(
+    tabelaUsuarios,
+    'valorInicialCarteira',
+    {
+      type: Usuario.rawAttributes.valorInicialCarteira.type,
+      allowNull: true,
+      defaultValue: null,
+    }
+  );
+}
 
   return app.listen(PORT, '0.0.0.0',() => { // Inicia o servidor
     console.log(`Servidor rodando em http://localhost:${PORT}`);
