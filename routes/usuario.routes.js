@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuario.controller');
 const cotaController = require('../controllers/cota.controller');
-
+const autenticar = require("../middlewares/auth.middleware")
 
 router.get('/', usuarioController.listar);
 router.get('/:id/cotas', usuarioController.listarCotas);
