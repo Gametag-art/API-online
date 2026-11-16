@@ -109,18 +109,33 @@ async function excluir(req, res) {
 
 async function listarCotas(req, res) {
   try {
-    const usuario = await Usuario.findByPk(req.params.id, {
-      include: [{ model: Cota, as: "cotas" }],
+    const usuario = await Usuario.findByPk(req.usuarioId, {
+      include: [
+        {
+          model: Cota,
+          as: "cotas",
+          include: [
+            {
+              model: Bolsa,
+              as: "bolsa",
+            },
+          ],
+        },
+      ],
     });
 
-    if (!usuario)
-      return res.status(404).json({ erro: "Dados inválidos" });
+    if (!usuario) {
+      return res.status(404).json({
+        erro: "Usuário não encontrado",
+      });
+    }
 
-    return res.status(200).json(usuario);
+    return res.status(200).json(usuario.cotas);
+
   } catch (error) {
-    return res
-      .status(500)
-      .json({ erro: "Não foi possível listar as cotas do usuário" });
+    return res.status(500).json({
+      erro: "Não foi possível listar as cotas do usuário",
+    });
   }
 }
 

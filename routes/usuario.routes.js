@@ -11,5 +11,5 @@ router.get('/:id', usuarioController.buscarPorId);
 router.post('/', usuarioController.criar);
 router.patch('/:id', usuarioController.atualizar);
 router.delete('/:id', usuarioController.excluir);
-
+router.get("/minhas-cotas",autenticar,usuarioController.listarCotas);
 module.exports = router;
