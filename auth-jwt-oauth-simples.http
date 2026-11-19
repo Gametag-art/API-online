@@ -4,7 +4,15 @@
 @baseUrl = http://localhost:4567
 @senha = RestClient@2026
 
+PATCH  https://api-online-5bbg.onrender.com/bolsas/1
+Content-Type: application/json
 
+{
+  "nome": "Vale",
+  "valor": 10000
+}
+
+###
 POST https://api-online-5bbg.onrender.com/bolsas
 Content-Type: application/json
 

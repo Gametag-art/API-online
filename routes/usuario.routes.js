@@ -4,7 +4,7 @@ const usuarioController = require('../controllers/usuario.controller');
 const cotaController = require('../controllers/cota.controller');
 const autenticar = require("../middlewares/auth.middleware")
 
-router.get("/minhas-cotas", autenticar, usuarioController.listarCotas);
+router.get("/minhas-cotas", autenticar, usuarioController.listarMinhasCotas);
 router.post("/minhas-cotas", autenticar, cotaController.comprarMinhaCota);
 router.patch("/minhas-cotas/:cotaId/vender", autenticar, cotaController.venderMinhaCota);
 router.get('/', usuarioController.listar);
